@@ -23,6 +23,7 @@ const signup = () => {
           id="email"
           {...register("email", {
             required: "Ce champ est requis!!!",
+            pattern: /[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}/igm
           })}
         />
         {errors.email && errors.email.message}
@@ -33,6 +34,7 @@ const signup = () => {
           id="password"
           {...register("password", {
             required: "Ce champ est requis",
+            pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&_])[A-Za-z\d$@$!%*?&_]{8,25}$/
           })}
         />
         {errors.password && errors.password.message}
@@ -43,6 +45,7 @@ const signup = () => {
           id="passwordConfirm"
           {...register("passwordConfirm", {
             required: "Ce champ est requis",
+            pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&_])[A-Za-z\d$@$!%*?&_]{8,25}$/
           })}
         />
         {errors.passwordConfirm && errors.passwordConfirm.message}
