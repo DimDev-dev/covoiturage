@@ -1,4 +1,4 @@
-import './globals.css'
+import './assset/globals.css'
 
 
 export const metadata = {
