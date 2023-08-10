@@ -6,5 +6,24 @@
         justify-content: center;
         align-items: center;
         height: 100vh;
-    
+        background-color:  rgba(22, 22, 68, 0.77);
+        color: #f1f1f1;
+}
+
+.formulaire input {
+        border-radius: 50px;
+        height: 30px;
+        border: 1px solid black;
+}
+
+.formulaire a {
+        width: auto;
+        background-color:  rgba(22, 22, 68, 0.77);
+        color: #f1f1f1;
+        height: 50px;
+        border-radius: 50px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
 }
