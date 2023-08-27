@@ -1,5 +1,5 @@
 "use client"
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import { auth } from "../firebase-config";
 
@@ -11,9 +11,21 @@ export function UserContextProvider( props ) {
 
     const signUp = (email, pwd) => createUserWithEmailAndPassword(auth, email, pwd)
     const signIn = (email, pwd) => signInWithEmailAndPassword(auth, email, pwd )
+    
+    useEffect(() => {
+      const usubscribe = onAuthStateChanged(auth, (currentUser) => {
+        setCurrentUser(currentUser)
+        setLoadingData(false)
+      })
+    
+      return usubscribe
+      
+    }, [])
+    
+    
     return(
         <UserContext.Provider value={{signUp, signIn, currentUser}}>
-            { props.children }
+            { !loadingData && props.children }
         </UserContext.Provider> 
     )
 }
