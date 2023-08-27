@@ -1,8 +1,9 @@
 "use client";
 import Link from "next/link";
-import React from "react";
+import React, { useContext, useRef } from "react";
 import "../assset/form.css";
 import { useForm } from "react-hook-form";
+import { UserContext } from "../userContext/page";
 
 const login = () => {
   const {
@@ -12,11 +13,20 @@ const login = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => console.log(data.email);
+const { signIn } = useContext(UserContext)
+const formRef = useRef()
+  const onSubmit = async (data) => {
+    try {
+      await signIn(data.email, data.password)
+      formRef.current.reset()
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <>
-      <form className="formulaire" onSubmit={handleSubmit(onSubmit)}>
+      <form ref={formRef} className="formulaire" onSubmit={handleSubmit(onSubmit)}>
         <p>Connexion</p>
         <input
           placeholder="email"
